@@ -2,9 +2,7 @@
 //Création du tableau
 var table = document.createElement("table");
 var bascule = false;
-var tableauImage = [ '0-100px', '100-200px', '200-300px', '300-400px',
-		'400-500px', '500-600px', '600-700px', '700-800px', '800-900px',
-		'900-1000px', '1000-1100px', '1100-1200px' ];
+
 
 for (var i = 1; i <= 4; i++) {
 	var row = document.createElement("tr");
@@ -22,11 +20,8 @@ for (var i = 1; i <= 4; i++) {
 		var cellImage = document.createElement("div");
 		cellImage.className = "image";
 		cellImage.id = j + "," + i + "-image";
-		//$("#"+ j + "," + i + "-image").css("background-position", "tableauImage[10]");
-		// $(".image").css("background-position", "1 0");
 
 		// $().css("background-position", tableauImage[11]);
-		// $(cellImage).css( "background-position", tableauImage[random]);
 
 		cell.appendChild(cellImage);
 		// J'ajoute la cellule au tableau
@@ -41,6 +36,28 @@ for (var i = 1; i <= 4; i++) {
 document.getElementById("main").appendChild(table);
 
 
+/*
+for (var i = 1; i <= 4; i++) {
+	for (var j = 1; j <= 7; j++) {
+		var idCell = j + "," + i + "-image";
+		$("#"+cellImage).css( "background-position", tableauImage[2]);
+	}
+}
+*/
+
+
+
+
+// Permet de changer les images de fond
+var tableauImage = [ '0 -100px', '100 -200px', '200 -300px', '300 -400px',
+		'400 -500px', '500 -600px', '600 -700px', '700 -800px', '800 -900px',
+		'900 -1000px', '1000 -1100px', '1100 -1200px', '0 -100px',
+		'100 -200px', '200 -300px', '300 -400px', '400 -500px', '500 -600px',
+		'600 -700px', '700 -800px', '800 -900px', '900 -1000px',
+		'1000 -1100px', '1100 -1200px' ];
+
+
+
 
 
 // Fonction afficher une image
@@ -51,6 +68,11 @@ function afficheImage(event) {
 	/*
 	 * var carte = document.getElementById(event.id);
 	 * carte.style.backgroundColor = "red"; carte.textContent ="Toto";
+	 */
+	
+	/*
+	 * $('.image', this).css( 'background-position', '0 -100px');
+	 * $('.image', this).css( 'background-position', tableauImage[5]);
 	 */
 
 	// Condition à respecter pour ne pas retourner plus de 2 cartes
