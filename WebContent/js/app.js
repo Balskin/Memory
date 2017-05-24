@@ -1,17 +1,17 @@
+//Permet de changer les images de fond
+var tableauImage = [ '0px 0px', '0px -100px', '0px -200px', '0px -300px',
+		'0px -400px', '0px -500px', '0px -600px', '0px -700px', '0px -800px',
+		'0px -900px', '0px -1000px', '0px -1100px', '0px -1200px',
+		'0px -1300px', '0px 0px', '0px -100px', '0px -200px', '0px -300px',
+		'0px -400px', '0px -500px', '0px -600px', '0px -700px', '0px -800px',
+		'0px -900px', '0px -1000px', '0px -1100px', '0px -1200px',
+		'0px -1300px', ];
 
-//Création du tableau
+
+
+// Création du tableau
 var table = document.createElement("table");
 var bascule = false;
-
-
-//Permet de changer les images de fond
-var tableauImage = [ '0 -100px', '0 -200px', '0 -300px', '0 -400px',
-		'0 -500px', '0px -600px', '0 -700px', '0 -800px', '0 -900px',
-		'0 -1000px', '00 -1100px', '00 -1200px', '0 -1100px',
-		'0 -200px', '0 -300px', '0 -400px', '0 -500px', '0 -600px',
-		'0 -700px', '0 -800px', '0 -900px', '0 -1000px',
-		'0 -1100px', '0 -1200px' ];
-
 
 for (var i = 1; i <= 4; i++) {
 	var row = document.createElement("tr");
@@ -30,12 +30,11 @@ for (var i = 1; i <= 4; i++) {
 		cellImage.className = "image";
 		cellImage.id = j + "," + i + "-image";
 
-		$(cellImage).css("background-position", tableauImage[5]);
+		$(cellImage).css("background-position", tableauImage[recupererUneValeurDansTableau()]);
 
 		cell.appendChild(cellImage);
 		// J'ajoute la cellule au tableau
 		row.appendChild(cell);
-
 	}
 
 	table.appendChild(row);
@@ -45,37 +44,40 @@ for (var i = 1; i <= 4; i++) {
 document.getElementById("main").appendChild(table);
 
 
-/*
-for (var i = 1; i <= 4; i++) {
-	for (var j = 1; j <= 7; j++) {
-		var idCell = j + "," + i + "-image";
-		$("#"+cellImage).css( "background-position", tableauImage[2]);
-	}
+
+
+// Fonction permettant d'appeler un nombre au sein du tableau et de le supprimer
+// ensuite
+function recupererUneValeurDansTableau() {
+	
+	// Tableau avec les indices
+	var tableauIndice = new Array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+			"10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21",
+			"22", "23", "24", "25", "26", "27", "28");
+
+	// Définit la longueur du tableau "tableauIndice"
+	var tableauIndiceLength = tableauIndice.length;
+	
+	// permet d'obtenir un nombre compris entre 0 et la longueur du tableau "tableauIndice"
+	var indice = Math.floor((Math.random() * tableauIndiceLength) + 1);
+	
+	// fonction "splice" permettant de supprimer "1" nombre à partir de l'indice "indice"
+	tableauIndice.splice(indice, 1);
+	
+	// retourne l'indice
+	return indice;
 }
-*/
 
 
 
-
-
-
-
-
+var PremiereImageBackgroundPosition;
+var SecondeImageBackgroundPosition;
+var premiereImageID;
 
 // Fonction afficher une image
 function afficheImage(event) {
 	// console.log("toto");
 	// console.log(event.id);
-
-	/*
-	 * var carte = document.getElementById(event.id);
-	 * carte.style.backgroundColor = "red"; carte.textContent ="Toto";
-	 */
-	
-	/*
-	 * $('.image', this).css( 'background-position', '0 -100px');
-	 * $('.image', this).css( 'background-position', tableauImage[5]);
-	 */
 
 	// Condition à respecter pour ne pas retourner plus de 2 cartes
 	if (affichagePossible) {
@@ -87,8 +89,9 @@ function afficheImage(event) {
 					"block");
 			premierClick = false;
 			console.log("Premier clic : " + premierClick);
-			var premiereImageID = document.getElementById(this.id);
-			console.log(premiereImageID);
+			premiereImageID = document.getElementById(this.id);
+			PremiereImageBackgroundPosition = $(".image", this).css("background-position")
+			console.log("background position : " + PremiereImageBackgroundPosition);
 		}
 		// condition réalisée s'il s'agit du second clic
 		else {
@@ -100,47 +103,39 @@ function afficheImage(event) {
 			affichagePossible = false;
 			console.log("Premier clic : " + premierClick);
 			var secondeImageID = document.getElementById(this.id);
-			console.log(secondeImageID);
+			SecondeImageBackgroundPosition = $(".image", this).css("background-position")
+			console.log("background position : " + SecondeImageBackgroundPosition);
 
-			// setTimeout(reset(premiereImageID,secondeImageID), 1000);
-			setTimeout(function() {
-				$(".image", premiereImageID).css("visibility", "hidden").css(
-						"display", "none");
-				$(".cache", premiereImageID).css("visibility", "visible").css(
-						"display", "block");
-				$(".image", secondeImageID).css("visibility", "hidden").css(
-						"display", "none");
-				$(".cache", secondeImageID).css("visibility", "visible").css(
-						"display", "block");
-			}, 1000);
-			setTimeout(function() {
-				affichagePossible = true;
-			}, 1000);
+
+			if (SecondeImageBackgroundPosition !== PremiereImageBackgroundPosition) {
+				// setTimeout(reset(premiereImageID,secondeImageID), 1000);
+				setTimeout(function() {
+					$(".image", premiereImageID).css("visibility", "hidden").css(
+							"display", "none");
+					$(".cache", premiereImageID).css("visibility", "visible").css(
+							"display", "block");
+					$(".image", secondeImageID).css("visibility", "hidden").css(
+							"display", "none");
+					$(".cache", secondeImageID).css("visibility", "visible").css(
+							"display", "block");
+				}, 1000);
+				setTimeout(function() {
+					affichagePossible = true;
+				}, 1000);
+			} else {
+				affichagePossible = true;			
+			}
+				
 		}
 	}
 
 }
 
-// Fonction premettant de retourner les images en faces cachées
-/*
- * function reset(premiereImageID,secondeImageID){ $( ".image", premiereImageID
- * ).css( "visibility", "hidden" ).css("display","none"); $( ".cache",
- * premiereImageID ).css( "visibility", "visible" ).css("display", "block"); $(
- * ".image", secondeImageID ).css( "visibility", "hidden"
- * ).css("display","none"); $( ".cache", secondeImageID ).css( "visibility",
- * "visible" ).css("display", "block");
- *  // Permet d'empecher l'affichage de plus de 2 images affichagePossible =
- * true; }
- */
 
-// Tableau des background-position
-/*
- * console.log(tableauImage[1]); console.log(tableauImage[12]);
- * 
- * var tab = document.createElement("div");
- * tab.appendChild(document.createTextNode(tableauImage[11]));
- * document.getElementById("main").appendChild(tab);
- */
+
+
+
+
 
 var premierClick = true;
 var affichagePossible = true;

@@ -54,7 +54,7 @@ main {
 	display: none;
 	background-image: url('../img/cards.png');
 	background-color: #FFF;
-	background-position: 0 -100px;
+	background-position: 0 -300px;
 }
 
 #progess-bar {
