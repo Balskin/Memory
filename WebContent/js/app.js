@@ -4,6 +4,15 @@ var table = document.createElement("table");
 var bascule = false;
 
 
+//Permet de changer les images de fond
+var tableauImage = [ '0 -100px', '0 -200px', '0 -300px', '0 -400px',
+		'0 -500px', '0px -600px', '0 -700px', '0 -800px', '0 -900px',
+		'0 -1000px', '00 -1100px', '00 -1200px', '0 -1100px',
+		'0 -200px', '0 -300px', '0 -400px', '0 -500px', '0 -600px',
+		'0 -700px', '0 -800px', '0 -900px', '0 -1000px',
+		'0 -1100px', '0 -1200px' ];
+
+
 for (var i = 1; i <= 4; i++) {
 	var row = document.createElement("tr");
 	for (var j = 1; j <= 7; j++) {
@@ -21,7 +30,7 @@ for (var i = 1; i <= 4; i++) {
 		cellImage.className = "image";
 		cellImage.id = j + "," + i + "-image";
 
-		// $().css("background-position", tableauImage[11]);
+		$(cellImage).css("background-position", tableauImage[5]);
 
 		cell.appendChild(cellImage);
 		// J'ajoute la cellule au tableau
@@ -48,13 +57,6 @@ for (var i = 1; i <= 4; i++) {
 
 
 
-// Permet de changer les images de fond
-var tableauImage = [ '0 -100px', '100 -200px', '200 -300px', '300 -400px',
-		'400 -500px', '500 -600px', '600 -700px', '700 -800px', '800 -900px',
-		'900 -1000px', '1000 -1100px', '1100 -1200px', '0 -100px',
-		'100 -200px', '200 -300px', '300 -400px', '400 -500px', '500 -600px',
-		'600 -700px', '700 -800px', '800 -900px', '900 -1000px',
-		'1000 -1100px', '1100 -1200px' ];
 
 
 
