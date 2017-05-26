@@ -7,6 +7,11 @@ var tableauImage = [ '0px 0px', '0px -100px', '0px -200px', '0px -300px',
 		'0px -900px', '0px -1000px', '0px -1100px', '0px -1200px',
 		'0px -1300px', ];
 
+//Tableau avec les indices
+var tableauIndice = new Array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+		"10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21",
+		"22", "23", "24", "25", "26", "27", "28");
+
 
 
 // Création du tableau
@@ -46,17 +51,16 @@ document.getElementById("main").appendChild(table);
 
 
 
+
 // Fonction permettant d'appeler un nombre au sein du tableau et de le supprimer
 // ensuite
 function recupererUneValeurDansTableau() {
 	
-	// Tableau avec les indices
-	var tableauIndice = new Array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
-			"10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21",
-			"22", "23", "24", "25", "26", "27", "28");
+
 
 	// Définit la longueur du tableau "tableauIndice"
 	var tableauIndiceLength = tableauIndice.length;
+	console.log(tableauIndiceLength);
 	
 	// permet d'obtenir un nombre compris entre 0 et la longueur du tableau "tableauIndice"
 	var indice = Math.floor((Math.random() * tableauIndiceLength) + 1);
