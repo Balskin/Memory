@@ -1,18 +1,26 @@
-//Permet de changer les images de fond
-var tableauImage = [ '0px 0px', '0px -100px', '0px -200px', '0px -300px',
+var tableauImage = new Array ('0px 0px', '0px -100px', '0px -200px', '0px -300px',
 		'0px -400px', '0px -500px', '0px -600px', '0px -700px', '0px -800px',
 		'0px -900px', '0px -1000px', '0px -1100px', '0px -1200px',
 		'0px -1300px', '0px 0px', '0px -100px', '0px -200px', '0px -300px',
 		'0px -400px', '0px -500px', '0px -600px', '0px -700px', '0px -800px',
 		'0px -900px', '0px -1000px', '0px -1100px', '0px -1200px',
-		'0px -1300px', ];
+		'0px -1300px');
 
-//Tableau avec les indices
-var tableauIndice = new Array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
-		"10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21",
-		"22", "23", "24", "25", "26", "27", "28");
+// Boucle permettant de mélanger le tableau "tableauImage"
+for(var position=tableauImage.length-1; position>=1; position--){
+	//hasard reçoit un nombre entier aléatoire entre 0 et position
+	var hasard=Math.floor(Math.random()*(position+1));
+	
+	//Echange
+	var sauve=tableauImage[position];
+	tableauImage[position]=tableauImage[hasard];
+	tableauImage[hasard]=sauve;
+}
 
 
+
+// Initialisation de la variable index
+var index = 0;
 
 // Création du tableau
 var table = document.createElement("table");
@@ -21,6 +29,7 @@ var bascule = false;
 for (var i = 1; i <= 4; i++) {
 	var row = document.createElement("tr");
 	for (var j = 1; j <= 7; j++) {
+		
 		// Je crée ma cellule
 		var cell = document.createElement("td");
 		cell.className = "card";
@@ -35,7 +44,9 @@ for (var i = 1; i <= 4; i++) {
 		cellImage.className = "image";
 		cellImage.id = j + "," + i + "-image";
 
-		$(cellImage).css("background-position", tableauImage[recupererUneValeurDansTableau()]);
+		// affecte une image au tableau mélangé
+		$(cellImage).css("background-position", tableauImage[index]);
+		++index;
 
 		cell.appendChild(cellImage);
 		// J'ajoute la cellule au tableau
@@ -52,28 +63,6 @@ document.getElementById("main").appendChild(table);
 
 
 
-// Fonction permettant d'appeler un nombre au sein du tableau et de le supprimer
-// ensuite
-function recupererUneValeurDansTableau() {
-	
-
-
-	// Définit la longueur du tableau "tableauIndice"
-	var tableauIndiceLength = tableauIndice.length;
-	console.log(tableauIndiceLength);
-	
-	// permet d'obtenir un nombre compris entre 0 et la longueur du tableau "tableauIndice"
-	var indice = Math.floor((Math.random() * tableauIndiceLength) + 1);
-	
-	// fonction "splice" permettant de supprimer "1" nombre à partir de l'indice "indice"
-	tableauIndice.splice(indice, 1);
-	
-	// retourne l'indice
-	return indice;
-}
-
-
-
 var PremiereImageBackgroundPosition;
 var SecondeImageBackgroundPosition;
 var premiereImageID;
@@ -87,6 +76,7 @@ function afficheImage(event) {
 	if (affichagePossible) {
 		// condition réalisée s'il s'agit du premier clic
 		if (premierClick) {
+						
 			$(".cache", this).css("visibility", "hidden")
 					.css("display", "none");
 			$(".image", this).css("visibility", "visible").css("display",
