@@ -66,6 +66,7 @@ document.getElementById("main").appendChild(table);
 var PremiereImageBackgroundPosition;
 var SecondeImageBackgroundPosition;
 var premiereImageID;
+var NbCartesRetournees = 0;
 
 // Fonction afficher une image
 function afficheImage(event) {
@@ -82,10 +83,8 @@ function afficheImage(event) {
 			$(".image", this).css("visibility", "visible").css("display",
 					"block");
 			premierClick = false;
-			console.log("Premier clic : " + premierClick);
 			premiereImageID = document.getElementById(this.id);
 			PremiereImageBackgroundPosition = $(".image", this).css("background-position")
-			console.log("background position : " + PremiereImageBackgroundPosition);
 		}
 		// condition réalisée s'il s'agit du second clic
 		else {
@@ -95,10 +94,8 @@ function afficheImage(event) {
 					"block");
 			premierClick = true;
 			affichagePossible = false;
-			console.log("Premier clic : " + premierClick);
 			var secondeImageID = document.getElementById(this.id);
 			SecondeImageBackgroundPosition = $(".image", this).css("background-position")
-			console.log("background position : " + SecondeImageBackgroundPosition);
 
 
 			if (SecondeImageBackgroundPosition !== PremiereImageBackgroundPosition) {
@@ -117,12 +114,17 @@ function afficheImage(event) {
 					affichagePossible = true;
 				}, 1000);
 			} else {
-				affichagePossible = true;			
-			}
-				
+				affichagePossible = true;
+				NbCartesRetournees = NbCartesRetournees + 2;
+			}				
 		}
 	}
-
+	
+	if (NbCartesRetournees == 28) {
+		setTimeout(function() {
+			alert("Vous avez gagné !");
+		}, 500);
+	}
 }
 
 
