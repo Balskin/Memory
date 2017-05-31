@@ -144,7 +144,7 @@ $('.card').on('click', afficheImage);
 // Animation de la barre du compte à rebours
 // Augmente la largeur jusqu'à 100% en 1min
 $("#red-fluid").animate({width : "+=100%"},
-		5000, function(){
+		60000, function(){
 	alert("Le temps est écoulé, vous avez perdu !")
 	});
 
