@@ -135,5 +135,11 @@ function afficheImage(event) {
 
 var premierClick = true;
 var affichagePossible = true;
-
+// surveillance de la classe .card sur un click
 $('.card').on('click', afficheImage);
+
+
+// animation de la barre du compte à rebours
+$("#red-fluid").animate({width : "+=5%"},
+		60000, function(){
+	});
